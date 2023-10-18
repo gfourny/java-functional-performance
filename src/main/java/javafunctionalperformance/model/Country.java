@@ -7,11 +7,10 @@ import java.util.Objects;
 
 @Builder
 public record Country (
-        String name,
-        List<Region> regions
+        String name
+
 ) implements Location {
-    public Country(String name, List<Region> regions) {
+    public Country(String name) {
         this.name = Objects.requireNonNull(name);
-        this.regions = List.copyOf(regions);
     }
 }

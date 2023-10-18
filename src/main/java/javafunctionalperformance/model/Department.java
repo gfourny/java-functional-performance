@@ -8,12 +8,11 @@ import java.util.Objects;
 @Builder
 public record Department (
         String name,
-        Integer departmentNumber,
-        List<City> cities
+        Integer departmentNumber
+
 ) implements Location {
-    public Department(String name, Integer departmentNumber, List<City> cities) {
+    public Department(String name, Integer departmentNumber) {
         this.name = Objects.requireNonNull(name);
         this.departmentNumber = departmentNumber;
-        this.cities = List.copyOf(cities);
     }
 }

@@ -1,16 +1,16 @@
 package javafunctionalperformance.model;
 
-import java.util.List;
 import java.util.Objects;
 
 public record City (
         String name,
         Integer postalCode,
-        List<Compagny> compagnies
+        Department department
+
 ) implements Location{
-    public City(String name, Integer postalCode, List<Compagny> compagnies) {
+    public City(String name, Integer postalCode, Department department) {
         this.name = Objects.requireNonNull(name);
         this.postalCode = Objects.requireNonNull(postalCode);
-        this.compagnies = List.copyOf(compagnies);
+        this.department = Objects.requireNonNull(department);
     }
 }
