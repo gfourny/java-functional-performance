@@ -1,4 +1,4 @@
-package javafunctionalperformance.model;
+package javafunctionalperformance.domain.model;
 
 import java.util.Objects;
 

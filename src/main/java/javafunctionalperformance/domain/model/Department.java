@@ -1,11 +1,7 @@
-package javafunctionalperformance.model;
+package javafunctionalperformance.domain.model;
 
-import lombok.Builder;
-
-import java.util.List;
 import java.util.Objects;
 
-@Builder
 public record Department (
         String name,
         Integer departmentNumber

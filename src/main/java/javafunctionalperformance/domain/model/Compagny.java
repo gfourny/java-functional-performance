@@ -1,6 +1,4 @@
-package javafunctionalperformance.model;
-
-import lombok.Builder;
+package javafunctionalperformance.domain.model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,7 +6,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-@Builder
 public record Compagny(
         String name,
         String sirenNumber,

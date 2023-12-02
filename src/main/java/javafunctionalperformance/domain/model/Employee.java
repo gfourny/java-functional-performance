@@ -1,10 +1,8 @@
-package javafunctionalperformance.model;
+package javafunctionalperformance.domain.model;
 
-import lombok.Builder;
 
 import java.util.Objects;
 
-@Builder
 public record Employee(
         String firstName,
         String lastName,
@@ -12,7 +10,8 @@ public record Employee(
         Integer postalCode,
         Integer age,
         Integer socialSecurityNumber,
-        Integer salary
+        Integer salary,
+        Compagny compagny
 ) {
 
     public Employee {
@@ -20,5 +19,6 @@ public record Employee(
         Objects.requireNonNull(lastName);
         Objects.requireNonNull(address);
         Objects.requireNonNull(socialSecurityNumber);
+        Objects.requireNonNull(compagny);
     }
 }

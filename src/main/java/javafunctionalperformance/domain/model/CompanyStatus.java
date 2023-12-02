@@ -1,4 +1,4 @@
-package javafunctionalperformance.model;
+package javafunctionalperformance.domain.model;
 
 public enum CompanyStatus {
 
