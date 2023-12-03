@@ -1,6 +1,7 @@
 package javafunctionalperformance.domain.model;
 
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 public record Employee(
@@ -9,7 +10,7 @@ public record Employee(
         String address,
         Integer postalCode,
         Integer age,
-        Integer socialSecurityNumber,
+        Long socialSecurityNumber,
         Integer salary,
         Compagny compagny
 ) {
@@ -19,6 +20,5 @@ public record Employee(
         Objects.requireNonNull(lastName);
         Objects.requireNonNull(address);
         Objects.requireNonNull(socialSecurityNumber);
-        Objects.requireNonNull(compagny);
     }
 }
