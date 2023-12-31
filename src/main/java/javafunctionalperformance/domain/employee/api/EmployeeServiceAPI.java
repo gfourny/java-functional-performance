@@ -13,4 +13,6 @@ public interface EmployeeServiceAPI {
     Employee getByLastName(String lastName);
 
     Map<Compagny, List<Employee>> listEmployeesByCompany();
+
+    List<String> listFirstName();
 }

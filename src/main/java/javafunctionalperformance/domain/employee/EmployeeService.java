@@ -9,8 +9,9 @@ import javafunctionalperformance.domain.model.Employee;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.groupingBy;
 
 @DomainService
 public class EmployeeService implements EmployeeServiceAPI {
@@ -21,23 +22,38 @@ public class EmployeeService implements EmployeeServiceAPI {
         this.employee = employee;
     }
 
-    @Override
-    public List<Employee> listAllEmployees(){
-        return Optional.ofNullable(employee.listAll()).orElseGet(List::of);
+    private static List<String> mapToFirstNameList(List<Employee> employees) {
+        return employees.stream()
+                .map(Employee::firstName)
+                .toList();
     }
 
     @Override
-    public Employee getByLastName(String lastName){
-        return Optional.ofNullable(employee.getByLastName(lastName))
+    public List<Employee> listAllEmployees() {
+        return getEmployees();
+    }
+
+    private List<Employee> getEmployees() {
+        return RetrieveStrategy.from(employee::listAll).retrieve();
+    }
+
+    @Override
+    public Employee getByLastName(String lastName) {
+        return ofNullable(employee.getByLastName(lastName))
                 .orElseThrow(() -> new EmployeeException(String.format("l'employee %s n'a pas été trouvé", lastName)));
     }
 
     @Override
-    public Map<Compagny, List<Employee>> listEmployeesByCompany(){
-        return Optional.of(employee)
-                .map(RecupererEmployee::listAll)
+    public Map<Compagny, List<Employee>> listEmployeesByCompany() {
+        return getEmployees()
                 .stream()
-                .flatMap(List::stream)
-                .collect(Collectors.groupingBy(Employee::compagny));
+                .collect(groupingBy(Employee::compagny));
+    }
+
+    @Override
+    public List<String> listFirstName() {
+        return ApiCaller.<String, Employee>from(this::getEmployees)
+                .transform(EmployeeService::mapToFirstNameList)
+                .call();
     }
 }
